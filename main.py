@@ -10,7 +10,7 @@ turtle.shape(image)
 
 #Reading data
 data = pandas.read_csv("Day25/Us-states-game/50_states.csv")
-states = data['state'].to_list()
+
 
 #Game loop function
 def game_loop(tries=50):
@@ -24,15 +24,13 @@ def game_loop(tries=50):
         except AttributeError:
             tries = 0
             break
-        for state in states:
-            #Looking through data to find coordinates to write text on
-            if(answer == str(state).lower()):
-                x = data[data['state'] == state]['x'].iloc[0]
-                y = data[data['state'] == state]['y'].iloc[0]
+        #Looking through data to find coordinates to write text on
+        for (index,row) in data.iterrows():
+            if(answer == str(row["state"]).lower()):
+                x = row.x
+                y = row.y
                 t.setpos(x,y)
-                t.write(str(state))
-                #Removing the found state from list
-                states.pop(data[data['state'] == state].index[0])
+                t.write(str(row.state))
                 break
         tries-=1
     
