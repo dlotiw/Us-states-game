@@ -33,6 +33,11 @@ def game_loop(tries=50):
                 t.write(str(row.state))
                 break
         tries-=1
+    answer = turtle.textinput("You 've lost!!!!!","Do you want to play guessing Y/Yes N/No")
+    if answer in ("Y",'y','yes','Yes'):
+        game_loop(50)
+    else:
+        exit
     
         
         
